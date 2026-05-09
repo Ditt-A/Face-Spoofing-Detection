@@ -1,0 +1,25 @@
+# Dataset besar
+dataset_rotated.zip
+dataset_rotated/
+data/
+dataset/
+datasets/
+
+# Notebook cache
+.ipynb_checkpoints/
+
+# Output training
+runs/
+outputs/
+output/
+logs/
+checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment
+.env
+venv/
+.venv/
