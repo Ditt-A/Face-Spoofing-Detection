@@ -19,7 +19,7 @@ The repository contains two main notebooks:
 ## Repository Structure
 
 ```text
-.
+Face-Spoofing-Detection
 |-- Data_Cleaning.ipynb
 |-- Modelling.ipynb
 |-- model/
