@@ -4,6 +4,8 @@ dataset_rotated/
 data/
 dataset/
 datasets/
+!docs/assets/dataset/
+!docs/assets/dataset/**
 
 # Notebook cache
 .ipynb_checkpoints/

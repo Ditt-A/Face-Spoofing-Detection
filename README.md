@@ -2,20 +2,11 @@
 
 A face presentation-attack detection project with a client-facing landing page and research notebooks using DINOv3, ConvNeXt, and FSFM.
 
-![Face Spoofing Detection landing page](docs/images/landing-desktop.png)
-
-<details>
-<summary>Full landing page preview</summary>
-
-![Full landing page with interactive gallery and simulation](docs/images/landing-full.png)
-
-</details>
-
 ## Explore the website
 
 The landing page focuses on identity-verification needs: recognizing presentation attacks, examining image context and facial detail, and exploring registration, identity-review, and service-access use cases. The gallery has animated filters, six image cards, and a detail viewer with previous/next controls, arrow-key navigation, Escape, focus management, and a mobile layout. Experiment details remain in the research documentation.
 
-All ten photographic assets are synthetic editorial illustrations. Gallery labels explain the examples; they are not model predictions. The landing page and gallery render independently of Python and GPUs. The simulation section calls a lightweight API using only internal examples; no user uploads are accepted.
+The gallery and simulation use six dataset samples recovered from embedded outputs in the original cleaning notebook. The PNG excerpts and lossless WebP versions retain those saved pixels; they are not the original full-resolution JPEG files. Labels follow the notebook and are not new model predictions. See the [sample provenance](docs/assets/dataset/README.md). Hero and supporting visuals remain editorial illustrations. The simulation calls a lightweight API using internal examples only; no user uploads are accepted.
 
 ```bash
 # Download code without the large checkpoint binaries.
@@ -43,12 +34,8 @@ $env:FSD_ENABLE_MODEL = '0'
 
 API docs: **http://127.0.0.1:8301/docs**. See [backend setup](backend/README.md) and the [model integration contract](docs/api.md). The real-model adapter remains a separate integration step; this service includes an explicit loading gate and reference fallback.
 
-![Interactive class gallery](docs/images/landing-gallery.png)
-
 <details>
-<summary>Mobile preview</summary>
-
-![Mobile landing page](docs/images/landing-mobile.png)
+<summary>Mobile simulation preview</summary>
 
 ![Mobile simulation](docs/images/simulation-mobile.png)
 
@@ -65,7 +52,7 @@ Face-Spoofing-Detection/
 │   │   ├── data.ts            # Gallery descriptions and client use cases
 │   │   └── App.tsx
 │   ├── public/
-│   │   ├── assets/images/     # Ten optimized WebP assets
+│   │   ├── assets/images/     # Dataset samples and supporting WebP assets
 │   │   └── brand/             # Native SVG mark / favicon
 │   └── e2e/                   # Desktop and mobile interaction tests
 ├── backend/
@@ -80,7 +67,7 @@ Face-Spoofing-Detection/
     ├── methodology.md         # Research, environment, data, and notebook guide
     ├── development.md         # Frontend setup and verification
     ├── api.md                 # API / fallback / future predictor contract
-    ├── assets/                # Placement guide, manifest, and exact prompts
+    ├── assets/                # Dataset provenance, placement, manifests, prompts
     └── images/                # Screenshots of the running website
 ```
 
@@ -114,4 +101,4 @@ The production build is emitted to `frontend/dist/`. A static host must provide 
 
 ## Visual assets
 
-See the [asset placement guide](docs/assets/README.md), [manifest](docs/assets/manifest.json), and [exact generation prompts](docs/assets/prompts.md). The website uses approximately 1.3 MB of WebP imagery, with true alpha preserved for the hero portrait and camera.
+See the [asset placement guide](docs/assets/README.md), [dataset provenance manifest](docs/assets/dataset/manifest.json), and [original editorial generation prompts](docs/assets/prompts.md). The six recovered dataset WebPs total about 324 KB. True alpha is preserved for the editorial hero portrait and camera. Unused editorial gallery prototypes are retained as design-source assets, while the live gallery and simulation use only the dataset-derived samples.

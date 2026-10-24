@@ -103,8 +103,8 @@ function GalleryDetail({
           <motion.img
             key={item.id}
             src={image(item.image)}
-            width={1254}
-            height={1254}
+            width={item.width}
+            height={item.height}
             alt={item.name}
             initial={{ opacity: 0, scale: reduced ? 1 : 1.025 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -112,7 +112,7 @@ function GalleryDetail({
             transition={{ duration: reduced ? 0 : 0.22 }}
           />
         </AnimatePresence>
-        <span className="detail-image-note">ILUSTRASI TAMPILAN WAJAH</span>
+        <span className="detail-image-note">SAMPEL DATASET</span>
       </div>
       <div className="detail-copy">
         <span className="eyebrow">KENALI TAMPILANNYA / {item.number}</span>
@@ -268,8 +268,8 @@ export function Gallery() {
                 <div className="card-photo">
                   <img
                     src={image(item.image)}
-                    width={1254}
-                    height={1254}
+                    width={item.width}
+                    height={item.height}
                     loading="lazy"
                     decoding="async"
                     alt={item.caption}
@@ -300,7 +300,7 @@ export function Gallery() {
           </AnimatePresence>
         </motion.div>
         <p className="gallery-footnote">
-          Gambar ilustratif untuk mengenali wajah asli dan ragam pemalsuannya.
+          Galeri menggunakan sampel gambar dari koleksi dataset.
         </p>
         <AnimatePresence>
           {active !== null && (

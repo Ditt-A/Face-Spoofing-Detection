@@ -597,7 +597,7 @@ function Questions() {
     },
     {
       title: "Apa yang bisa saya lihat di galeri ini?",
-      copy: "Anda dapat membandingkan ilustrasi wajah asli dengan foto cetak, layar, masker, manekin, dan presentasi lainnya. Pilih kartu untuk melihat detail. Galeri ini tidak mengunggah atau memeriksa foto pribadi Anda.",
+      copy: "Anda dapat membandingkan sampel wajah asli dengan foto cetak, layar, masker, manekin, dan representasi lainnya dari dataset. Pilih kartu untuk melihat detail. Galeri ini tidak mengunggah atau memeriksa foto pribadi Anda.",
     },
     {
       title: "Apakah pemeriksaan wajah memastikan identitas seseorang?",
@@ -751,7 +751,10 @@ function Footer() {
           </div>
           <div className="footer-bottom">
             <p>© {new Date().getFullYear()} Face Spoofing Detection.</p>
-            <p>Gambar pada halaman ini merupakan ilustrasi.</p>
+            <p>
+              Galeri memakai sampel dataset. Visual pendukung bersifat
+              ilustratif.
+            </p>
             <a href="#top">
               Kembali ke atas
               <ArrowUpRight size={14} />

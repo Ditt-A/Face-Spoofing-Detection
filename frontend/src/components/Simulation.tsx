@@ -28,8 +28,8 @@ const initialExamples: Example[] = galleryItems.map((item) => ({
   id: item.id,
   title: item.name,
   image_name: item.image,
-  width: 1254,
-  height: 1254,
+  width: item.width,
+  height: item.height,
   summary: item.description,
   observations: [...item.cues],
 }));

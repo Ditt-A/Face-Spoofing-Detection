@@ -1,8 +1,80 @@
 [
-  {"id":"realperson","title":"Wajah asli","image_name":"02-real-person","width":1254,"height":1254,"summary":"Contoh ini menampilkan potret wajah manusia sebagai pembanding terhadap media pemalsuan.","observations":["Potret wajah manusia","Detail permukaan wajah","Konteks pengambilan gambar"]},
-  {"id":"fake_printed","title":"Foto cetak","image_name":"03-printed-photo","width":1254,"height":1254,"summary":"Wajah pada contoh ini direproduksi melalui selembar foto cetak. Perhatikan tepi dan permukaan kertas.","observations":["Wajah direproduksi pada kertas","Tepi dan lengkungan cetakan","Permukaan cetak di sekitar wajah"]},
-  {"id":"fake_screen","title":"Layar ponsel","image_name":"04-screen-replay","width":1254,"height":1254,"summary":"Contoh ini memperlihatkan potret wajah pada layar perangkat. Bingkai dan kaca merupakan bagian dari media presentasinya.","observations":["Potret tampil pada perangkat","Bingkai layar di sekitar wajah","Pantulan permukaan kaca"]},
-  {"id":"fake_mask","title":"Masker wajah","image_name":"05-silicone-mask","width":1254,"height":1254,"summary":"Replika masker menyerupai bentuk wajah. Material dan batas permukaannya menjadi petunjuk untuk ditinjau.","observations":["Replika bentuk wajah","Permukaan material artifisial","Batas dan sambungan masker"]},
-  {"id":"fake_mannequin","title":"Manekin","image_name":"06-mannequin","width":1254,"height":1254,"summary":"Contoh ini menampilkan kepala manekin dengan fitur menyerupai manusia dan permukaan artifisial.","observations":["Objek menyerupai kepala manusia","Tekstur permukaan artifisial","Bentuk kepala dan leher objek"]},
-  {"id":"fake_unknown","title":"Pemalsuan lain","image_name":"07-mixed-presentation","width":1254,"height":1254,"summary":"Contoh ini menggabungkan media cetak dan layar. Bentuk pemalsuan lain dapat memiliki konstruksi yang berbeda.","observations":["Gabungan lebih dari satu media","Potongan foto pada layar","Konteks objek di sekitar wajah"]}
+  {
+    "id": "realperson",
+    "title": "Wajah asli",
+    "image_name": "dataset-realperson",
+    "width": 225,
+    "height": 299,
+    "summary": "Contoh ini menampilkan potret wajah manusia sebagai pembanding terhadap media pemalsuan.",
+    "observations": [
+      "Potret wajah manusia",
+      "Detail permukaan wajah",
+      "Konteks pengambilan gambar"
+    ]
+  },
+  {
+    "id": "fake_printed",
+    "title": "Foto cetak",
+    "image_name": "dataset-fake_printed",
+    "width": 220,
+    "height": 288,
+    "summary": "Wajah pada contoh ini direproduksi melalui selembar foto cetak. Perhatikan tepi dan permukaan kertas.",
+    "observations": [
+      "Wajah direproduksi pada kertas",
+      "Tepi dan lengkungan cetakan",
+      "Permukaan cetak di sekitar wajah"
+    ]
+  },
+  {
+    "id": "fake_screen",
+    "title": "Layar ponsel",
+    "image_name": "dataset-fake_screen",
+    "width": 168,
+    "height": 299,
+    "summary": "Contoh ini memperlihatkan potret wajah pada layar perangkat. Bingkai dan kaca merupakan bagian dari media presentasinya.",
+    "observations": [
+      "Potret tampil pada perangkat",
+      "Bingkai layar di sekitar wajah",
+      "Pantulan permukaan kaca"
+    ]
+  },
+  {
+    "id": "fake_mask",
+    "title": "Masker wajah",
+    "image_name": "dataset-fake_mask",
+    "width": 141,
+    "height": 296,
+    "summary": "Replika masker menyerupai bentuk wajah. Material dan batas permukaannya menjadi petunjuk untuk ditinjau.",
+    "observations": [
+      "Replika bentuk wajah",
+      "Permukaan material artifisial",
+      "Batas dan sambungan masker"
+    ]
+  },
+  {
+    "id": "fake_mannequin",
+    "title": "Manekin",
+    "image_name": "dataset-fake_mannequin",
+    "width": 282,
+    "height": 212,
+    "summary": "Contoh ini menampilkan figur manekin dengan bentuk wajah dan permukaan artifisial.",
+    "observations": [
+      "Figur pajangan menyerupai manusia",
+      "Material wajah artifisial",
+      "Bentuk kepala, leher, dan tubuh objek"
+    ]
+  },
+  {
+    "id": "fake_unknown",
+    "title": "Pemalsuan lain",
+    "image_name": "dataset-fake_unknown",
+    "width": 162,
+    "height": 162,
+    "summary": "Contoh ini menampilkan wajah dalam bentuk lukisan. Perhatikan goresan warna dan tekstur nonfotografis pada representasi wajah.",
+    "observations": [
+      "Goresan dan tekstur lukisan",
+      "Representasi wajah nonfotografis",
+      "Detail warna dan bentuk wajah"
+    ]
+  }
 ]

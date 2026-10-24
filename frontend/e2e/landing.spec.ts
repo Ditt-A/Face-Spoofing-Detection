@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("all ten visual assets load and the page remains within the viewport", async ({
+test("dataset samples and supporting assets load within the viewport", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -23,7 +23,8 @@ test("all ten visual assets load and the page remains within the viewport", asyn
       .toBe(true);
     assets.add((await item.getAttribute("src"))!);
   }
-  expect(assets.size).toBe(10);
+  expect(assets.size).toBe(11);
+  expect([...assets].filter((src) => src.includes("/dataset-")).length).toBe(6);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

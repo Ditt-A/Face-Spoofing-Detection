@@ -1,6 +1,6 @@
 # Face Spoofing Detection API
 
-A small FastAPI service for the website's internal-example simulation. By default it runs a reference fallback, never imports an ML runtime, and never reads model checkpoints. It does not accept image uploads or remote image URLs.
+A small FastAPI service for the website's internal-example simulation. Its six examples now point to dataset images recovered from saved notebook visualizations; see [provenance](../docs/assets/dataset/README.md). By default it runs a reference fallback, never imports an ML runtime, and never reads model checkpoints. It does not accept image uploads or remote image URLs.
 
 ## Start locally
 

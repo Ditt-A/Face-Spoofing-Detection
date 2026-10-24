@@ -46,7 +46,8 @@ def test_each_internal_example_has_a_deterministic_reference_result(label):
         assert data["metadata"]["provider"] == "fallback"
         assert data["metadata"]["result_source"] == "reference_example"
         assert data["metadata"]["model_loaded"] is False
-        assert data["image"]["width"] == 1254
+        assert data["image"]["width"] > 0 and data["image"]["height"] > 0
+        assert data["image"]["image_name"].startswith("dataset-")
         assert len(data["observations"]) == 3
         second = client.post("/api/v1/analyze", json={"example_id": label}).json()
         assert second["label"] == data["label"]

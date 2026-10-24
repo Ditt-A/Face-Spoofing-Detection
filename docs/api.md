@@ -2,6 +2,8 @@
 
 The UI accepts only the six internal example IDs. It displays a clear model-not-loaded notice and reference-result preview when the service uses fallback. There is no upload control, file-upload route, user-selectable scenario parameter, or remote image URL parameter.
 
+The internal images are dataset excerpts recovered from the original notebook's saved visualizations. [Provenance](assets/dataset/README.md) records their source filenames, original notebook commit, crop rectangles, and resolution limitations. Fallback labels preserve the notebook's class labels, including examples from an anomaly audit; they are not independently verified ground truth.
+
 ## API contract
 
 `GET /api/v1/examples` returns `{"examples": [...]}`. Every item contains `id`, `title`, `image_name`, `width`, `height`, `summary`, and `observations`. `image_name` points to a local WebP served by the frontend.
