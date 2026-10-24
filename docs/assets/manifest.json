@@ -109,7 +109,7 @@
     {
       "id": "08-dataset-archive",
       "name": "Arsip foto dataset",
-      "use": "Bagian cleaning dataset dan proses riset",
+      "use": "Bagian manfaat pemeriksaan identitas; ilustrasi ragam wajah dan media presentasi",
       "transparent": false,
       "reference": null,
       "web": "frontend/public/assets/images/08-dataset-archive.webp",

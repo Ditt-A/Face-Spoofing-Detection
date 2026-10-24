@@ -304,6 +304,31 @@
   color: #a0aab3;
   margin-left: 7px;
 }
+.model-panel .model-specs strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+.client-checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 25px 0 4px;
+  color: #657b8b;
+  font-size: 12px;
+}
+.client-checks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.client-checks svg {
+  color: #315cf5;
+  flex-shrink: 0;
+}
 .model-panel ul {
   display: flex;
   flex-wrap: wrap;

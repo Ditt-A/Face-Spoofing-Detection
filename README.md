@@ -1,12 +1,12 @@
 # Face Spoofing Detection
 
-A visual introduction to a six-class face presentation-attack research pipeline, with an interactive gallery and notebook-based experiments using DINOv3, ConvNeXt, and FSFM.
+A face presentation-attack detection project with a client-facing landing page and research notebooks using DINOv3, ConvNeXt, and FSFM.
 
 ![Face Spoofing Detection landing page](docs/images/landing-desktop.png)
 
 ## Explore the website
 
-The landing page introduces the six classes, full-image and face-crop inputs, three model branches, and the dataset-cleaning process. The gallery has animated filters, six image cards, and a detail viewer with previous/next controls, arrow-key navigation, Escape, focus management, and a mobile layout.
+The landing page focuses on identity-verification needs: recognizing presentation attacks, examining image context and facial detail, and exploring registration, identity-review, and service-access use cases. The gallery has animated filters, six image cards, and a detail viewer with previous/next controls, arrow-key navigation, Escape, focus management, and a mobile layout. Experiment details remain in the research documentation.
 
 All ten photographic assets are synthetic editorial illustrations. Gallery labels explain the examples; they are not model predictions. The frontend runs independently of Python, datasets, checkpoints, and GPUs.
 

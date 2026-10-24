@@ -11,7 +11,7 @@ These ten photographic assets were generated separately with built-in image_gen 
 | `05-silicone-mask` | Mask card / detail |
 | `06-mannequin` | Mannequin card / detail |
 | `07-mixed-presentation` | Other-presentation card / detail; one mixed-media illustration |
-| `08-dataset-archive` | Research / data-cleaning section |
+| `08-dataset-archive` | Verification-benefits section, illustrating different faces and presentation media |
 | `09-dual-view-context` | Full-image and face-framing toggle in the methods section |
 | `10-camera-cutout` | Transparent camera accent in the closing section |
 

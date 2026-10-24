@@ -13,9 +13,11 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
-  Code2,
-  Cpu,
-  Github,
+  Image as ImageIcon,
+  Smartphone,
+  Box,
+  UserRound,
+  KeyRound,
   Layers3,
   Menu,
   ScanFace,
@@ -23,7 +25,7 @@ import {
 } from "lucide-react";
 import { Gallery } from "./components/Gallery";
 import { ease, Reveal } from "./components/Reveal";
-import { image, models, REPO } from "./data";
+import { image, useCases, REPO } from "./data";
 
 function Brand() {
   return (
@@ -69,7 +71,7 @@ function Header() {
         const rect = section.getBoundingClientRect();
         return rect.top <= marker && rect.bottom > marker;
       });
-      setActive(current?.id === "model" ? "metode" : current?.id || "");
+      setActive(current?.id === "pendekatan" ? "metode" : current?.id || "");
     };
     const dismiss = (event: KeyboardEvent) => {
       if (event.key === "Escape" && open) {
@@ -94,8 +96,8 @@ function Header() {
   }, [open]);
   const links = [
     { id: "jenis-serangan", label: "Jenis serangan" },
-    { id: "metode", label: "Metode" },
-    { id: "riset", label: "Riset" },
+    { id: "metode", label: "Cara kerja" },
+    { id: "penggunaan", label: "Penggunaan" },
   ];
   return (
     <header
@@ -117,14 +119,9 @@ function Header() {
           ))}
         </nav>
         <div className="header-actions">
-          <a
-            className="button button-small button-dark"
-            href={REPO}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Github size={16} />
-            <span>Lihat kode</span>
+          <a className="button button-small button-dark" href="#galeri-kelas">
+            <ScanFace size={16} />
+            <span>Lihat contoh</span>
             <ArrowUpRight size={15} />
           </a>
           <button
@@ -155,12 +152,10 @@ function Header() {
           if (!target) return;
           pendingSection.current = null;
           requestAnimationFrame(() =>
-            document
-              .getElementById(target)
-              ?.scrollIntoView({
-                behavior: reduced ? "instant" : "smooth",
-                block: "start",
-              }),
+            document.getElementById(target)?.scrollIntoView({
+              behavior: reduced ? "instant" : "smooth",
+              block: "start",
+            }),
           );
         }}
       >
@@ -227,16 +222,16 @@ function Hero() {
       <div className="hero-copy">
         <motion.p className="eyebrow hero-eyebrow" {...enter(0)}>
           <span className="status-dot" />
-          COMPUTER VISION / RESEARCH PROJECT
+          FACE SPOOFING DETECTION
         </motion.p>
         <motion.h1 id="hero-title" {...enter(0.07)}>
-          Wajah terlihat sama.
+          Kenali wajah asli.
           <br />
-          <span>Jejaknya berbeda.</span>
+          <span>Waspadai tiruannya.</span>
         </motion.h1>
         <motion.p className="hero-description" {...enter(0.14)}>
-          Menelusuri perbedaan wajah asli dan serangan presentasi, melalui
-          konteks gambar, detail wajah, dan tiga pendekatan model.
+          Bantu proses verifikasi mengenali wajah asli dan upaya pemalsuan
+          melalui foto, layar, masker, atau objek yang menyerupai wajah.
         </motion.p>
         <motion.div className="hero-actions" {...enter(0.21)}>
           <a className="button button-primary" href="#jenis-serangan">
@@ -244,19 +239,22 @@ function Hero() {
             <ArrowRight size={18} />
           </a>
           <a className="button button-outline" href="#metode">
-            Pelajari metode
+            Cara kerjanya
             <ArrowDown size={17} />
           </a>
         </motion.div>
         <motion.div className="hero-facts" {...enter(0.28)}>
           <span>
-            <strong>06</strong>Kelas visual
+            <ImageIcon size={17} />
+            Foto & layar
           </span>
           <span>
-            <strong>02</strong>Sudut pandang
+            <ScanFace size={17} />
+            Masker & replika
           </span>
           <span>
-            <strong>03</strong>Cabang model
+            <Layers3 size={17} />
+            Konteks & detail
           </span>
         </motion.div>
       </div>
@@ -264,7 +262,7 @@ function Hero() {
         <div className="hero-stage">
           <div className="hero-orbit" />
           <span className="hero-vertical-label">
-            LOOK CLOSER. UNDERSTAND THE DIFFERENCE.
+            KEASLIAN WAJAH PERLU DIPERHATIKAN.
           </span>
           <img
             className="hero-person"
@@ -282,7 +280,7 @@ function Hero() {
           </div>
           <span className="hero-image-label">
             <ScanFace size={16} />
-            Beyond the surface
+            Periksa keaslian wajah
           </span>
         </div>
         <motion.div className="hero-print" {...enter(0.45)}>
@@ -297,7 +295,9 @@ function Hero() {
             MEDIA BERBEDA
           </span>
         </motion.div>
-        <span className="hero-figure-number">FIG. 01 — VISUAL IDENTITY</span>
+        <span className="hero-figure-number">
+          KENALI WAJAH DAN MEDIA DI BALIKNYA
+        </span>
       </motion.div>
     </section>
   );
@@ -314,45 +314,41 @@ function Method() {
     >
       <div className="container method-grid">
         <Reveal className="method-copy">
-          <p className="eyebrow">02 / DUA SUDUT PANDANG</p>
+          <p className="eyebrow">02 / CARA KERJA</p>
           <h2 id="method-title">
             Lihat konteksnya.
             <br />
             <span>Perhatikan detailnya.</span>
           </h2>
           <p>
-            Bagian tepi gambar bisa bercerita. Detail wajah juga. Pipeline
-            mempertahankan keduanya dalam dua tampilan yang saling melengkapi.
+            Tepi kertas, bingkai perangkat, dan tekstur wajah bisa memberi
+            petunjuk yang berbeda. Pemeriksaan memperhatikan gambar secara
+            menyeluruh sekaligus detail di area wajah.
           </p>
           <div className="method-points">
             <div>
               <span>01</span>
               <div>
-                <h3>Gambar penuh</h3>
+                <h3>Konteks di sekitar wajah</h3>
                 <p>
-                  Mempertahankan konteks seperti bingkai layar, tepi kertas, dan
-                  bentuk objek.
+                  Perhatikan media yang digunakan, termasuk bingkai layar, tepi
+                  kertas, dan bentuk objek.
                 </p>
               </div>
             </div>
             <div>
               <span>02</span>
               <div>
-                <h3>Crop wajah</h3>
+                <h3>Detail pada wajah</h3>
                 <p>
-                  Memusatkan perhatian pada tekstur dan detail lokal di area
-                  wajah.
+                  Tinjau tekstur dan detail permukaan yang bisa menunjukkan
+                  reproduksi atau bahan artifisial.
                 </p>
               </div>
             </div>
           </div>
-          <a
-            className="text-link"
-            href={`${REPO}/blob/main/docs/methodology.md`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Baca metodologi
+          <a className="text-link" href="#jenis-serangan">
+            Lihat contoh perbedaannya
             <ArrowUpRight size={17} />
           </a>
         </Reveal>
@@ -360,7 +356,7 @@ function Method() {
           <div className="method-view-toolbar">
             <span>
               <i />
-              DUAL-VIEW INPUT
+              KONTEKS & DETAIL
             </span>
             <div className="view-toggle" aria-label="Tampilan gambar metode">
               <button aria-pressed={!focus} onClick={() => setFocus(false)}>
@@ -397,8 +393,8 @@ function Method() {
                 transition={{ duration: reduced ? 0 : 0.16 }}
               >
                 {focus
-                  ? "Framing wajah memperjelas area yang dipelajari bersama konteks gambar."
-                  : "Satu sumber gambar, dua tampilan untuk mempelajari petunjuk yang berbeda."}
+                  ? "Lihat lebih dekat tekstur dan detail pada area wajah."
+                  : "Perhatikan wajah sekaligus media dan area di sekitarnya."}
               </motion.p>
             </AnimatePresence>
           </div>
@@ -408,41 +404,41 @@ function Method() {
   );
 }
 
-function Models() {
+function UseCases() {
   const [selected, setSelected] = useState(0);
-  const model = models[selected];
+  const useCase = useCases[selected];
   const reduced = useReducedMotion();
-  const icons = [ScanFace, Layers3, Cpu];
+  const icons = [UserRound, ScanFace, KeyRound];
   const Icon = icons[selected];
   return (
     <section
       className="models-section section-space"
-      id="model"
+      id="penggunaan"
       aria-labelledby="models-title"
     >
       <div className="container">
         <Reveal className="section-heading">
           <div>
-            <p className="eyebrow">03 / PENDEKATAN YANG SALING MELENGKAPI</p>
+            <p className="eyebrow">03 / UNTUK LAYANAN ANDA</p>
             <h2 id="models-title">
-              Tiga model.
+              Saat identitas penting,
               <br />
-              <span>Satu penelusuran.</span>
+              <span>periksa keasliannya.</span>
             </h2>
           </div>
           <p className="heading-aside">
-            Setiap cabang membawa cara membaca gambar yang berbeda.
-            Probabilitasnya digabung pada tahap ensemble.
+            Dari pendaftaran hingga pemberian akses, pemeriksaan wajah dapat
+            melengkapi proses peninjauan identitas di layanan Anda.
           </p>
         </Reveal>
         <Reveal className="model-layout">
           <div
             className="model-tabs"
             role="tablist"
-            aria-label="Cabang model"
+            aria-label="Kebutuhan layanan"
             aria-orientation="vertical"
           >
-            {models.map((item, index) => (
+            {useCases.map((item, index) => (
               <button
                 role="tab"
                 key={item.id}
@@ -454,16 +450,16 @@ function Models() {
                 onKeyDown={(event) => {
                   let next = index;
                   if (event.key === "ArrowDown")
-                    next = (index + 1) % models.length;
+                    next = (index + 1) % useCases.length;
                   else if (event.key === "ArrowUp")
-                    next = (index + models.length - 1) % models.length;
+                    next = (index + useCases.length - 1) % useCases.length;
                   else if (event.key === "Home") next = 0;
-                  else if (event.key === "End") next = models.length - 1;
+                  else if (event.key === "End") next = useCases.length - 1;
                   else return;
                   event.preventDefault();
                   setSelected(next);
                   document
-                    .getElementById(`model-tab-${models[next].id}`)
+                    .getElementById(`model-tab-${useCases[next].id}`)
                     ?.focus();
                 }}
               >
@@ -487,12 +483,12 @@ function Models() {
             id="model-panel"
             className="model-panel"
             role="tabpanel"
-            aria-labelledby={`model-tab-${model.id}`}
+            aria-labelledby={`model-tab-${useCase.id}`}
             tabIndex={0}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
-                key={model.id}
+                key={useCase.id}
                 initial={{ opacity: 0, y: reduced ? 0 : 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: reduced ? 0 : -5 }}
@@ -502,25 +498,22 @@ function Models() {
                   <span className="model-symbol">
                     <Icon size={29} strokeWidth={1.5} />
                   </span>
-                  <span className="eyebrow">BRANCH / 0{selected + 1}</span>
+                  <span className="eyebrow">PENGGUNAAN / 0{selected + 1}</span>
                 </div>
-                <h3>{model.title}</h3>
-                <p>{model.copy}</p>
+                <h3>{useCase.title}</h3>
+                <p>{useCase.copy}</p>
                 <div className="model-specs">
                   <div>
-                    <span>RESOLUSI INPUT</span>
-                    <strong>
-                      {model.resolution}
-                      <small>px</small>
-                    </strong>
+                    <span>TAHAP LAYANAN</span>
+                    <strong>{useCase.stage}</strong>
                   </div>
                   <div>
-                    <span>ADAPTASI MODEL</span>
-                    <strong>{model.tuning}</strong>
+                    <span>FOKUS PEMERIKSAAN</span>
+                    <strong>{useCase.focus}</strong>
                   </div>
                 </div>
                 <ul>
-                  {model.facts.map((fact) => (
+                  {useCase.facts.map((fact) => (
                     <li key={fact}>
                       <Check size={14} />
                       {fact}
@@ -536,11 +529,11 @@ function Models() {
   );
 }
 
-function Research() {
+function Verification() {
   return (
     <section
       className="research-section section-space"
-      id="riset"
+      id="pendekatan"
       aria-labelledby="research-title"
     >
       <div className="container research-grid">
@@ -550,47 +543,40 @@ function Research() {
             width={1536}
             height={1024}
             loading="lazy"
-            alt="Arsip ilustratif berbagai potret dan media presentasi wajah"
+            alt="Ilustrasi berbagai wajah dan media pemalsuan identitas"
           />
           <span className="research-photo-caption">
-            DATA QUALITY / BEFORE THE MODEL
+            KEASLIAN DI BALIK SETIAP IDENTITAS
           </span>
         </Reveal>
         <Reveal className="research-copy" delay={0.07}>
-          <p className="eyebrow">04 / DARI DATA KE EKSPERIMEN</p>
+          <p className="eyebrow">04 / LENGKAPI VERIFIKASI ANDA</p>
           <h2 id="research-title">
-            Riset dimulai dari
+            Tambahkan lapisan
             <br />
-            <span>data yang ditinjau.</span>
+            <span>pemeriksaan wajah.</span>
           </h2>
           <p>
-            Embedding DINOv3 membantu menelusuri kemiripan gambar. Duplikat
-            ditinjau, lalu distribusi kelas diperiksa kembali sebelum modelling.
+            Foto, layar, dan objek tiruan dapat menyerupai pengguna asli.
+            Perhatikan konteks dan detail pada gambar untuk meninjau indikasi
+            pemalsuan dalam alur verifikasi Anda.
           </p>
-          <div className="research-stats">
-            <div>
-              <strong>1.652</strong>
-              <span>Gambar awal</span>
-            </div>
-            <span className="stats-arrow">
-              <ArrowRight size={24} />
-            </span>
-            <div>
-              <strong>1.427</strong>
-              <span>Setelah deduplikasi</span>
-            </div>
-          </div>
-          <p className="research-note">
-            225 gambar duplikat dihapus pada eksperimen yang dicatat. Kandidat
-            anomali ditandai untuk tinjauan manual.
-          </p>
-          <a
-            className="text-link"
-            href={`${REPO}/blob/main/notebooks/Data_Cleaning.ipynb`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Jelajahi notebook cleaning
+          <ul className="client-checks">
+            <li>
+              <Check size={16} />
+              Kenali media pemalsuan wajah
+            </li>
+            <li>
+              <Check size={16} />
+              Tinjau konteks dan detail gambar
+            </li>
+            <li>
+              <Check size={16} />
+              Lengkapi keputusan verifikasi
+            </li>
+          </ul>
+          <a className="text-link" href="#penggunaan">
+            Temukan contoh penggunaan
             <ArrowUpRight size={17} />
           </a>
         </Reveal>
@@ -604,30 +590,31 @@ function Questions() {
   const reduced = useReducedMotion();
   const questions = [
     {
-      title: "Apakah galeri ini menjalankan deteksi?",
-      copy: "Galeri ini menjelaskan jenis kelas menggunakan gambar sintetis berlabel. Eksplorasi kartu berjalan di browser tanpa mengirim gambar ke model. Pipeline training dan inferensi tersedia di notebook riset.",
+      title: "Apa itu pemalsuan wajah?",
+      copy: "Pemalsuan wajah adalah upaya memakai foto, layar, masker, atau objek menyerupai wajah untuk meniru seseorang dalam proses verifikasi. Bentuknya dapat beragam, sehingga media dan detail wajah perlu diperhatikan bersama.",
     },
     {
-      title: "Bagaimana pipeline menggabungkan ketiga model?",
-      copy: "Setiap model membaca gambar penuh dan crop wajah, lalu menghasilkan probabilitas kelas. Inferensi memakai test-time augmentation; probabilitas ketiga cabang dirata-ratakan pada ensemble dasar.",
+      title: "Apa yang bisa saya lihat di galeri ini?",
+      copy: "Anda dapat membandingkan ilustrasi wajah asli dengan foto cetak, layar, masker, manekin, dan presentasi lainnya. Pilih kartu untuk melihat detail. Galeri ini tidak mengunggah atau memeriksa foto pribadi Anda.",
     },
     {
-      title: "Apa yang tersedia di repositori?",
-      copy: "Notebook cleaning dan modelling, checkpoint FSFM serta DINOv3 ConvNeXt melalui Git LFS, dan probabilitas tersimpan. Checkpoint ViT-H+ dan sebagian artefak meta-layer belum disertakan. Rincian kebutuhan tersedia dalam dokumentasi.",
+      title: "Apakah pemeriksaan wajah memastikan identitas seseorang?",
+      copy: "Pemeriksaan keaslian gambar membantu meninjau indikasi pemalsuan. Penetapan identitas tetap memerlukan pemeriksaan lain sesuai kebutuhan layanan Anda.",
     },
   ];
   return (
     <section
       className="questions-section container section-space"
+      id="pertanyaan"
       aria-labelledby="questions-title"
     >
       <Reveal className="questions-layout">
         <div>
-          <p className="eyebrow">CATATAN PROYEK</p>
+          <p className="eyebrow">PERTANYAAN UMUM</p>
           <h2 id="questions-title">
-            Sebelum
+            Kenali lebih jauh
             <br />
-            <span>menjelajah lebih jauh.</span>
+            <span>pemeriksaan wajah.</span>
           </h2>
         </div>
         <div className="faq-list">
@@ -677,30 +664,20 @@ function Footer() {
       <Reveal className="container closing-wrap">
         <section className="closing-banner" aria-labelledby="closing-title">
           <div>
-            <p className="eyebrow">BUKA KODE. TELUSURI PROSESNYA.</p>
+            <p className="eyebrow">PERHATIKAN KEASLIAN DI BALIK WAJAH.</p>
             <h2 id="closing-title">
-              Lihat lebih dekat
+              Kenali risikonya.
               <br />
-              di balik eksperimen.
+              Perkuat verifikasi wajah.
             </h2>
             <div className="closing-actions">
-              <a
-                className="button button-white"
-                href={REPO}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Github size={17} />
-                Jelajahi repositori
-                <ArrowUpRight size={17} />
+              <a className="button button-white" href="#jenis-serangan">
+                <ScanFace size={17} />
+                Kenali jenis serangannya
+                <ArrowRight size={17} />
               </a>
-              <a
-                className="closing-docs"
-                href={`${REPO}/blob/main/docs/development.md`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Dokumentasi
+              <a className="closing-docs" href="#metode">
+                Cara kerja
                 <ArrowUpRight size={16} />
               </a>
             </div>
@@ -724,37 +701,35 @@ function Footer() {
             <div className="footer-brand">
               <Brand />
               <p>
-                Menelusuri jejak visual di balik wajah.
+                Kenali wajah asli dan upaya pemalsuannya.
                 <br />
-                Sebuah proyek riset face spoofing detection.
+                Lengkapi proses verifikasi identitas Anda.
               </p>
               <span className="footer-project">
                 <span className="status-dot" />
-                OPEN RESEARCH PROJECT
+                FACE SPOOFING DETECTION
               </span>
             </div>
             <nav aria-label="Jelajahi">
               <h2>Jelajahi</h2>
-              <a href="#jenis-serangan">Galeri kelas</a>
-              <a href="#metode">Pendekatan dual-view</a>
-              <a href="#model">Cabang model</a>
+              <a href="#jenis-serangan">Jenis serangan</a>
+              <a href="#metode">Cara kerja</a>
+              <a href="#penggunaan">Contoh penggunaan</a>
             </nav>
-            <nav aria-label="Riset dan kode">
-              <h2>Riset & kode</h2>
+            <nav aria-label="Pelajari">
+              <h2>Pelajari</h2>
+              <a href="#galeri-kelas">Galeri contoh</a>
+              <a href="#pendekatan">Pemeriksaan wajah</a>
+              <a href="#pertanyaan">Pertanyaan umum</a>
+            </nav>
+            <nav aria-label="Informasi">
+              <h2>Informasi</h2>
               <a
-                href={`${REPO}/blob/main/notebooks/Modelling.ipynb`}
+                href="https://github.com/Ditt-A"
                 target="_blank"
                 rel="noreferrer"
               >
-                Notebook modelling
-                <ArrowUpRight />
-              </a>
-              <a
-                href={`${REPO}/blob/main/notebooks/Data_Cleaning.ipynb`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Notebook cleaning
+                Pengembang
                 <ArrowUpRight />
               </a>
               <a
@@ -762,33 +737,18 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Metodologi
-                <ArrowUpRight />
-              </a>
-            </nav>
-            <nav aria-label="Proyek">
-              <h2>Proyek</h2>
-              <a
-                href="https://github.com/Ditt-A"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ditt-A
-                <ArrowUpRight />
-              </a>
-              <a href={REPO} target="_blank" rel="noreferrer">
-                GitHub
+                Dokumentasi teknis
                 <ArrowUpRight />
               </a>
               <a href={`${REPO}/issues`} target="_blank" rel="noreferrer">
-                Diskusi & masukan
+                Sampaikan masukan
                 <ArrowUpRight />
               </a>
             </nav>
           </div>
           <div className="footer-bottom">
             <p>© {new Date().getFullYear()} Face Spoofing Detection.</p>
-            <p>Gambar ilustratif sintetis · Proyek riset</p>
+            <p>Gambar pada halaman ini merupakan ilustrasi.</p>
             <a href="#top">
               Kembali ke atas
               <ArrowUpRight size={14} />
@@ -811,30 +771,30 @@ export default function App() {
         <main id="main-content" tabIndex={-1}>
           <Hero />
           <div className="model-strip container">
-            <span>DIBANGUN DENGAN</span>
+            <span>KENALI MEDIA PEMALSUAN</span>
             <div>
               <span>
+                <ImageIcon size={20} />
+                Foto cetak
+              </span>
+              <span>
+                <Smartphone size={20} />
+                Layar perangkat
+              </span>
+              <span>
                 <ScanFace size={20} />
-                DINOv3
+                Masker wajah
               </span>
               <span>
-                <Layers3 size={20} />
-                ConvNeXt
-              </span>
-              <span>
-                <Cpu size={20} />
-                FSFM
-              </span>
-              <span>
-                <Code2 size={20} />
-                PyTorch
+                <Box size={20} />
+                Manekin
               </span>
             </div>
           </div>
           <Gallery />
           <Method />
-          <Models />
-          <Research />
+          <UseCases />
+          <Verification />
           <Questions />
         </main>
         <Footer />

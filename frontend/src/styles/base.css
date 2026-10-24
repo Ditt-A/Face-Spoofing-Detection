@@ -393,6 +393,10 @@ p {
   color: #243d52;
   letter-spacing: -1.5px;
 }
+.hero-facts svg {
+  color: #54739f;
+  flex-shrink: 0;
+}
 .hero-facts > span + span {
   border-left: 1px solid #d7e0e7;
   padding-left: 26px;
@@ -1080,6 +1084,8 @@ p {
   }
   .model-strip > div {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
     justify-content: space-between;
   }

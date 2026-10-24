@@ -18,16 +18,16 @@ Use Node.js 22 LTS. From `frontend/`, run `npm ci` and `npm run dev`, then open 
 | Detail arrows | Cycle through the six examples, wrapping at either end |
 | ArrowLeft / ArrowRight in detail | Previous / next example |
 | Escape / close button / backdrop | Dismiss dialog and restore focus to its card |
-| Model tabs | Select one branch; ArrowUp/ArrowDown and Home/End supported |
+| Use-case tabs | Explore registration, identity verification, or service access; ArrowUp/ArrowDown and Home/End supported |
 | Method view toggle | Animate between the illustrative full image and face framing |
-| Project-note accordion | Expand or collapse explanatory content |
-| GitHub / notebooks / docs | Open the corresponding repository resource |
+| FAQ accordion | Expand or collapse client-oriented explanations |
+| Technical documentation / developer / feedback | Open the corresponding resource from the information footer |
 
 The dialog uses the browser top layer and native focus trapping. The body is locked while it is open. Gallery controls keep labels visible on touch devices. Animations respect `prefers-reduced-motion`; the layout supports small phones through desktop screens.
 
 ## Motion
 
-Hero elements enter in sequence. Gallery image hover, filter layout transitions, modal entrance/exit, image crossfades, model selection, contextual-image zoom, accordion height, and scroll reveals use short transitions. No perpetual animation or scroll hijacking is used. Motion React is configured with reducedMotion="user"; CSS motion has a reduced-motion override.
+Hero elements enter in sequence. Gallery image hover, filter layout transitions, modal entrance/exit, image crossfades, use-case selection, contextual-image zoom, accordion height, and scroll reveals use short transitions. No perpetual animation or scroll hijacking is used. Motion React is configured with reducedMotion="user"; CSS motion has a reduced-motion override.
 
 ## Browser verification
 

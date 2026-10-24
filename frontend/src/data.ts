@@ -8,14 +8,13 @@ export const galleryItems = [
     category: "real",
     image: "02-real-person",
     caption: "Manusia di depan kamera.",
-    description:
-      "Wajah manusia menjadi kelas pembanding terhadap lima kategori serangan presentasi.",
+    description: "Wajah manusia yang menjadi subjek pemeriksaan identitas.",
     detail:
-      "Dalam riset ini, citra diklasifikasikan sebagai realperson. Foto diam tetap memiliki keterbatasan; contoh ini menjelaskan label kelas, bukan bukti liveness.",
+      "Keaslian wajah perlu diperhatikan bersama konteks gambarnya. Contoh ini memperlihatkan potret seseorang untuk dibandingkan dengan wajah yang direproduksi melalui media lain.",
     cues: [
       "Detail dan tekstur wajah",
       "Konteks pengambilan gambar",
-      "Pembanding untuk kelas spoof",
+      "Keutuhan tampilan wajah",
     ],
     number: "01",
   },
@@ -28,7 +27,7 @@ export const galleryItems = [
     description:
       "Foto wajah yang dicetak dapat digunakan sebagai media serangan presentasi.",
     detail:
-      "Tepi kertas, tekstur cetakan, dan konteks di sekitar wajah menjadi informasi visual yang dapat dipelajari model. Gambar penuh membantu mempertahankan petunjuk tersebut.",
+      "Foto cetak dapat terlihat meyakinkan saat diarahkan ke kamera. Tepi kertas, lengkungan, dan tekstur cetakan membantu memperlihatkan bahwa wajah berasal dari sebuah reproduksi.",
     cues: [
       "Tepi dan lengkungan kertas",
       "Tekstur permukaan cetak",
@@ -62,7 +61,7 @@ export const galleryItems = [
     description:
       "Replika wajah berupa masker menjadi kategori serangan tersendiri.",
     detail:
-      "Ilustrasi masker silikon ini memperlihatkan perbedaan material, detail permukaan, dan batas masker. Bentuk serta bahan masker pada dataset dapat bervariasi.",
+      "Masker dapat meniru bentuk wajah seseorang. Bahan permukaan, sambungan, dan batas di sekitar wajah menjadi detail yang perlu diperhatikan saat meninjau keasliannya.",
     cues: [
       "Material permukaan",
       "Batas dan sambungan masker",
@@ -78,7 +77,7 @@ export const galleryItems = [
     caption: "Objek yang menyerupai manusia.",
     description: "Kepala atau figur artifisial yang menyerupai wajah manusia.",
     detail:
-      "Manekin memberi contoh wajah dengan struktur menyerupai manusia, tetapi memiliki bahan dan tekstur artifisial. Informasi lokal dan konteks objek sama-sama relevan.",
+      "Bentuk kepala dan fitur wajah pada manekin dapat menyerupai manusia. Material permukaan serta bentuk leher dan area sekitarnya membantu memperlihatkan sifat artifisial objek.",
     cues: [
       "Tekstur artifisial",
       "Struktur kepala dan leher",
@@ -88,13 +87,13 @@ export const galleryItems = [
   },
   {
     id: "fake_unknown",
-    name: "Presentasi lain",
+    name: "Pemalsuan lain",
     category: "spoof",
     image: "07-mixed-presentation",
     caption: "Bentuk serangan yang beragam.",
-    description: "Kategori untuk pola spoof lain atau campuran pada dataset.",
+    description: "Pemalsuan wajah dapat menggunakan gabungan beberapa media.",
     detail:
-      "Konstruksi kertas di atas layar ini merupakan salah satu ilustrasi presentasi campuran. Kategori fake_unknown mencakup variasi lain dan tidak terbatas pada contoh ini.",
+      "Contoh ini menggabungkan potongan foto dan layar. Bentuk pemalsuan dapat beragam, sehingga detail wajah perlu dilihat bersama media dan konteks di sekitarnya.",
     cues: [
       "Kombinasi beberapa media",
       "Pola yang tidak seragam",
@@ -104,35 +103,39 @@ export const galleryItems = [
   },
 ] as const;
 export type GalleryItem = (typeof galleryItems)[number];
-export const models = [
+export const useCases = [
   {
-    id: "vith",
-    name: "DINOv3 ViT-H+",
-    tag: "Representasi visual",
-    resolution: "448 × 448",
-    tuning: "LoRA",
-    title: "Membaca pola visual secara menyeluruh.",
-    copy: "Model fondasi visual mengolah gambar penuh dan crop wajah. Fitur kedua sudut pandang digabung sebelum masuk ke kepala klasifikasi.",
-    facts: ["Input RGB", "LoRA rank 8", "Fusi fitur dua tampilan"],
+    id: "registration",
+    name: "Pendaftaran akun",
+    tag: "Saat pengguna baru bergabung",
+    stage: "Pendaftaran",
+    focus: "Keaslian wajah",
+    title: "Tambahkan pemeriksaan saat akun dibuat.",
+    copy: "Pada pendaftaran berbasis foto wajah, tinjau apakah gambar menampilkan manusia atau reproduksi melalui media lain sebelum melanjutkan peninjauan identitas.",
+    facts: [
+      "Foto pendaftaran",
+      "Indikasi media tiruan",
+      "Peninjauan identitas",
+    ],
   },
   {
-    id: "cnx",
-    name: "ConvNeXt-Large",
-    tag: "Spasial & frekuensi",
-    resolution: "384 × 384",
-    tuning: "Fine-tuning",
-    title: "Melihat detail dari ruang dan frekuensi.",
-    copy: "Cabang DINOv3 ConvNeXt menggabungkan RGB dan kanal FFT menjadi input enam kanal untuk mempelajari pola spasial serta artefak frekuensi.",
-    facts: ["Input RGB + FFT", "Enam kanal", "Fusi fitur dua tampilan"],
+    id: "verification",
+    name: "Verifikasi identitas",
+    tag: "Saat identitas ditinjau",
+    stage: "Verifikasi",
+    focus: "Media presentasi",
+    title: "Lihat lebih dari kemiripan potret.",
+    copy: "Potret yang terlihat cocok tetap dapat ditampilkan lewat kertas, layar, atau replika. Pemeriksaan citra membantu meninjau media yang digunakan dalam proses verifikasi.",
+    facts: ["Konteks gambar", "Detail wajah", "Media presentasi"],
   },
   {
-    id: "fsfm",
-    name: "FSFM ViT-B/16",
-    tag: "Representasi wajah",
-    resolution: "224 × 224",
-    tuning: "LoRA",
-    title: "Memberi perhatian khusus pada wajah.",
-    copy: "Cabang FSFM membawa representasi yang dilatih khusus untuk wajah, dengan normalisasi dari pretraining dan adaptasi LoRA pada tugas klasifikasi.",
-    facts: ["Pretraining wajah", "Normalisasi FSFM", "LoRA rank 8"],
+    id: "access",
+    name: "Akses layanan",
+    tag: "Saat verifikasi menjadi syarat",
+    stage: "Pemberian akses",
+    focus: "Indikasi pemalsuan",
+    title: "Lengkapi verifikasi sebelum memberi akses.",
+    copy: "Untuk layanan yang menggunakan verifikasi wajah, pemeriksaan indikasi pemalsuan dapat menjadi salah satu pertimbangan bersama mekanisme keamanan lainnya.",
+    facts: ["Verifikasi wajah", "Tinjauan tambahan", "Keputusan akses"],
   },
 ] as const;

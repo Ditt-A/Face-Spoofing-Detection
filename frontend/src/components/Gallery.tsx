@@ -112,10 +112,10 @@ function GalleryDetail({
             transition={{ duration: reduced ? 0 : 0.22 }}
           />
         </AnimatePresence>
-        <span className="detail-image-note">CONTOH VISUAL SINTETIS</span>
+        <span className="detail-image-note">ILUSTRASI TAMPILAN WAJAH</span>
       </div>
       <div className="detail-copy">
-        <span className="eyebrow">MENGENAL KELAS / {item.number}</span>
+        <span className="eyebrow">KENALI TAMPILANNYA / {item.number}</span>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={item.id}
@@ -125,13 +125,12 @@ function GalleryDetail({
             transition={{ duration: reduced ? 0 : 0.18 }}
           >
             <span className={`class-badge ${item.category}`}>
-              {item.category === "real" ? "Wajah asli" : "Serangan presentasi"}
+              {item.category === "real" ? "Wajah asli" : "Upaya pemalsuan"}
             </span>
             <h2 id="detail-title">{item.name}</h2>
-            <code>{item.id}</code>
             <p className="detail-description">{item.description}</p>
             <p>{item.detail}</p>
-            <h3>Petunjuk visual untuk dipahami</h3>
+            <h3>Hal yang perlu diperhatikan</h3>
             <ul>
               {item.cues.map((cue) => (
                 <li key={cue}>
@@ -193,8 +192,8 @@ export function Gallery() {
           </div>
           <div className="heading-aside">
             <p>
-              Kenali enam kelas yang dipelajari model. Buka setiap kartu untuk
-              melihat detail dan konteks visualnya.
+              Foto, layar, atau objek tiruan dapat menyerupai wajah asli. Buka
+              setiap kartu untuk mengenali perbedaannya.
             </p>
             <a className="text-link" href="#galeri-kelas">
               Jelajahi galeri <ArrowDown size={16} />
@@ -286,8 +285,8 @@ export function Gallery() {
                     <span className={`class-category ${item.category}`}>
                       <i />
                       {item.category === "real"
-                        ? "GENUINE"
-                        : "PRESENTATION ATTACK"}
+                        ? "WAJAH ASLI"
+                        : "MEDIA PEMALSUAN"}
                     </span>
                     <h3>{item.name}</h3>
                     <p>{item.caption}</p>
@@ -301,8 +300,7 @@ export function Gallery() {
           </AnimatePresence>
         </motion.div>
         <p className="gallery-footnote">
-          Gambar ilustratif. Label menjelaskan jenis contoh, bukan hasil
-          inferensi model.
+          Gambar ilustratif untuk mengenali wajah asli dan ragam pemalsuannya.
         </p>
         <AnimatePresence>
           {active !== null && (

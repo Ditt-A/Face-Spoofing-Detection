@@ -7,7 +7,7 @@ test("all ten visual assets load and the page remains within the viewport", asyn
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Wajah terlihat sama.Jejaknya berbeda.",
+    "Kenali wajah asli.Waspadai tiruannya.",
   );
   const assets = new Set<string>();
   for (const item of await page.locator('img[src*="/assets/images/"]').all()) {
@@ -98,7 +98,7 @@ test("dialog wraps between first and last examples and traps focus", async ({
   await page.keyboard.press("ArrowLeft");
   await expect(
     page.getByRole("dialog").getByRole("heading", { level: 2 }),
-  ).toHaveText("Presentasi lain");
+  ).toHaveText("Pemalsuan lain");
   await page.keyboard.press("ArrowRight");
   await expect(
     page.getByRole("dialog").getByRole("heading", { level: 2 }),
@@ -143,19 +143,19 @@ test("full image and face view switch without requesting inference", async ({
   expect(remoteRequests).toEqual([]);
 });
 
-test("model tabs support pointer and vertical keyboard navigation", async ({
+test("use-case tabs support pointer and vertical keyboard navigation", async ({
   page,
 }) => {
   await page.goto("/");
-  const cnx = page.getByRole("tab", { name: /ConvNeXt-Large/ });
+  const cnx = page.getByRole("tab", { name: /Verifikasi identitas/ });
   await cnx.click();
   await expect(cnx).toHaveAttribute("aria-selected", "true");
-  await expect(page.getByRole("tabpanel")).toContainText("384 × 384");
+  await expect(page.getByRole("tabpanel")).toContainText("kemiripan potret");
   await cnx.press("ArrowDown");
-  await expect(page.getByRole("tabpanel")).toContainText("normalisasi");
-  await expect(page.getByRole("tab", { name: /FSFM ViT/ })).toBeFocused();
+  await expect(page.getByRole("tabpanel")).toContainText("memberi akses");
+  await expect(page.getByRole("tab", { name: /Akses layanan/ })).toBeFocused();
   await page.keyboard.press("Home");
-  await expect(page.getByRole("tabpanel")).toContainText("448 × 448");
+  await expect(page.getByRole("tabpanel")).toContainText("akun dibuat");
 });
 
 test("navigation and primary CTA reach real sections", async ({
@@ -178,7 +178,7 @@ test("navigation and primary CTA reach real sections", async ({
     name: isMobile ? "Navigasi seluler" : "Navigasi utama",
     exact: true,
   });
-  await nav.getByRole("link", { name: "Metode", exact: true }).click();
+  await nav.getByRole("link", { name: "Cara kerja", exact: true }).click();
   await expect(page).toHaveURL(/#metode$/);
   await expect(
     page.getByRole("heading", {
@@ -209,17 +209,17 @@ test("project notes expand and all links have real destinations", async ({
 }) => {
   await page.goto("/");
   const question = page.getByRole("button", {
-    name: "Apakah galeri ini menjalankan deteksi?",
+    name: "Apa yang bisa saya lihat di galeri ini?",
     exact: true,
   });
   await question.click();
   await expect(question).toHaveAttribute("aria-expanded", "true");
   await expect(
     page.getByRole("region", {
-      name: "Apakah galeri ini menjalankan deteksi?",
+      name: "Apa yang bisa saya lihat di galeri ini?",
       exact: true,
     }),
-  ).toContainText("tanpa mengirim gambar");
+  ).toContainText("tidak mengunggah");
   await question.click();
   await expect(question).toHaveAttribute("aria-expanded", "false");
   const invalid = await page
@@ -237,8 +237,8 @@ test("project notes expand and all links have real destinations", async ({
     );
   expect(invalid).toEqual([]);
   await expect(
-    page.locator("footer").getByRole("link", { name: "Notebook modelling" }),
-  ).toHaveAttribute("href", /\/notebooks\/Modelling.ipynb$/);
+    page.locator("footer").getByRole("link", { name: "Dokumentasi teknis" }),
+  ).toHaveAttribute("href", /\/docs\/methodology.md$/);
 });
 
 test("reduced motion keeps gallery and dialog content usable", async ({
