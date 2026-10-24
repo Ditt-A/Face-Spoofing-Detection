@@ -23,3 +23,16 @@ __pycache__/
 .env
 venv/
 .venv/
+
+# Frontend dependencies and generated output
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+*.tsbuildinfo
+
+# Local research inputs and generated artifacts
+checkpoint/
+test_images/
+weights/
+*.zip
