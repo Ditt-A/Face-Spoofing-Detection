@@ -4,6 +4,13 @@ A face presentation-attack detection project with a client-facing landing page a
 
 ![Face Spoofing Detection landing page](docs/images/landing-desktop.png)
 
+<details>
+<summary>Full landing page preview</summary>
+
+![Full landing page with interactive gallery and simulation](docs/images/landing-full.png)
+
+</details>
+
 ## Explore the website
 
 The landing page focuses on identity-verification needs: recognizing presentation attacks, examining image context and facial detail, and exploring registration, identity-review, and service-access use cases. The gallery has animated filters, six image cards, and a detail viewer with previous/next controls, arrow-key navigation, Escape, focus management, and a mobile layout. Experiment details remain in the research documentation.
@@ -43,6 +50,8 @@ API docs: **http://127.0.0.1:8301/docs**. See [backend setup](backend/README.md)
 
 ![Mobile landing page](docs/images/landing-mobile.png)
 
+![Mobile simulation](docs/images/simulation-mobile.png)
+
 </details>
 
 ## Repository layout
@@ -51,9 +60,9 @@ API docs: **http://127.0.0.1:8301/docs**. See [backend setup](backend/README.md)
 Face-Spoofing-Detection/
 ├── frontend/                  # Standalone React + TypeScript + Vite website
 │   ├── src/
-│   │   ├── components/        # Interactive gallery and reveal animation
+│   │   ├── components/        # Interactive gallery, simulation, and reveals
 │   │   ├── styles/            # Layout, gallery, sections, responsive motion
-│   │   ├── data.ts            # Class descriptions and model specifications
+│   │   ├── data.ts            # Gallery descriptions and client use cases
 │   │   └── App.tsx
 │   ├── public/
 │   │   ├── assets/images/     # Ten optimized WebP assets
