@@ -1,6 +1,6 @@
 # Frontend development
 
-The landing page lives in `frontend/` and runs independently of the research notebooks. It does not have an inference endpoint, upload images, initialize Python, or load checkpoints.
+The landing page lives in `frontend/` and runs independently of the research notebooks. Its simulation section calls the versioned API under `backend/` using internal example IDs. It does not upload user images or initialize checkpoints. Model loading in the API is disabled by default; see [the integration contract](api.md).
 
 ## Local setup
 
@@ -21,6 +21,7 @@ Use Node.js 22 LTS. From `frontend/`, run `npm ci` and `npm run dev`, then open 
 | Use-case tabs | Explore registration, identity verification, or service access; ArrowUp/ArrowDown and Home/End supported |
 | Method view toggle | Animate between the illustrative full image and face framing |
 | FAQ accordion | Expand or collapse client-oriented explanations |
+| Simulation | Select an internal example, call the API, view its result, reset or retry |
 | Technical documentation / developer / feedback | Open the corresponding resource from the information footer |
 
 The dialog uses the browser top layer and native focus trapping. The body is locked while it is open. Gallery controls keep labels visible on touch devices. Animations respect `prefers-reduced-motion`; the layout supports small phones through desktop screens.
@@ -31,7 +32,7 @@ Hero elements enter in sequence. Gallery image hover, filter layout transitions,
 
 ## Browser verification
 
-Run `npx playwright install chromium` once, then `npm run test:e2e`. Playwright starts a separate server on port 4174. Tests cover both desktop Chrome and Pixel 7 layouts. No backend or GPU is required.
+Create the root `.venv` and install `backend/requirements-dev.txt`, then run `npx playwright install chromium` once and `npm run test:e2e` from `frontend/`. Playwright starts the frontend on port 4174 and a separate API on port 8311. Tests cover desktop Chrome and Pixel 7, including actual API responses, cancelled selections, request failures, and reconnection. Model loading is explicitly disabled for both testing and the default API configuration. Set `FSD_TEST_PYTHON` if the test Python executable is elsewhere.
 
 ## Notebook organization
 

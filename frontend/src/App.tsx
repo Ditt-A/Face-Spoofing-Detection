@@ -24,6 +24,7 @@ import {
   X,
 } from "lucide-react";
 import { Gallery } from "./components/Gallery";
+import { Simulation } from "./components/Simulation";
 import { ease, Reveal } from "./components/Reveal";
 import { image, useCases, REPO } from "./data";
 
@@ -98,6 +99,7 @@ function Header() {
     { id: "jenis-serangan", label: "Jenis serangan" },
     { id: "metode", label: "Cara kerja" },
     { id: "penggunaan", label: "Penggunaan" },
+    { id: "simulasi", label: "Simulasi" },
   ];
   return (
     <header
@@ -119,9 +121,9 @@ function Header() {
           ))}
         </nav>
         <div className="header-actions">
-          <a className="button button-small button-dark" href="#galeri-kelas">
+          <a className="button button-small button-dark" href="#simulasi">
             <ScanFace size={16} />
-            <span>Lihat contoh</span>
+            <span>Coba simulasi</span>
             <ArrowUpRight size={15} />
           </a>
           <button
@@ -238,8 +240,8 @@ function Hero() {
             Eksplorasi contoh
             <ArrowRight size={18} />
           </a>
-          <a className="button button-outline" href="#metode">
-            Cara kerjanya
+          <a className="button button-outline" href="#simulasi">
+            Coba simulasi
             <ArrowDown size={17} />
           </a>
         </motion.div>
@@ -715,6 +717,7 @@ function Footer() {
               <a href="#jenis-serangan">Jenis serangan</a>
               <a href="#metode">Cara kerja</a>
               <a href="#penggunaan">Contoh penggunaan</a>
+              <a href="#simulasi">Simulasi pemeriksaan</a>
             </nav>
             <nav aria-label="Pelajari">
               <h2>Pelajari</h2>
@@ -761,6 +764,21 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const initialHash = window.location.hash;
+    if (!initialHash) return;
+    let active = true;
+    void document.fonts.ready.then(() => {
+      if (active && window.location.hash === initialHash) {
+        document
+          .getElementById(initialHash.slice(1))
+          ?.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
   return (
     <MotionConfig reducedMotion="user">
       <div id="top">
@@ -793,6 +811,7 @@ export default function App() {
           </div>
           <Gallery />
           <Method />
+          <Simulation />
           <UseCases />
           <Verification />
           <Questions />

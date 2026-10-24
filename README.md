@@ -8,7 +8,7 @@ A face presentation-attack detection project with a client-facing landing page a
 
 The landing page focuses on identity-verification needs: recognizing presentation attacks, examining image context and facial detail, and exploring registration, identity-review, and service-access use cases. The gallery has animated filters, six image cards, and a detail viewer with previous/next controls, arrow-key navigation, Escape, focus management, and a mobile layout. Experiment details remain in the research documentation.
 
-All ten photographic assets are synthetic editorial illustrations. Gallery labels explain the examples; they are not model predictions. The frontend runs independently of Python, datasets, checkpoints, and GPUs.
+All ten photographic assets are synthetic editorial illustrations. Gallery labels explain the examples; they are not model predictions. The landing page and gallery render independently of Python and GPUs. The simulation section calls a lightweight API using only internal examples; no user uploads are accepted.
 
 ```bash
 # Download code without the large checkpoint binaries.
@@ -19,6 +19,22 @@ npm run dev
 ```
 
 Open **http://localhost:3001**. Node.js 22 LTS is recommended. On PowerShell, set `$env:GIT_LFS_SKIP_SMUDGE = '1'` before running the normal `git clone` command.
+
+## Try the simulation
+
+Open **http://localhost:3001/#simulasi** after starting the backend. Choose one of six internal examples, run a check, and inspect the result. The UI clearly reports that the model is not loaded and shows a reference preview. API requests, selection changes, cancellation, reset, and retry work without loading any checkpoint.
+
+```powershell
+# From the repository root, in a second terminal (Python 3.11+).
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+$env:FSD_ENABLE_MODEL = '0'
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8301
+```
+
+![Simulation with an internal example](docs/images/simulation-desktop.png)
+
+API docs: **http://127.0.0.1:8301/docs**. See [backend setup](backend/README.md) and the [model integration contract](docs/api.md). The real-model adapter remains a separate integration step; this service includes an explicit loading gate and reference fallback.
 
 ![Interactive class gallery](docs/images/landing-gallery.png)
 
@@ -43,6 +59,10 @@ Face-Spoofing-Detection/
 │   │   ├── assets/images/     # Ten optimized WebP assets
 │   │   └── brand/             # Native SVG mark / favicon
 │   └── e2e/                   # Desktop and mobile interaction tests
+├── backend/
+│   ├── app/                   # FastAPI, internal fixtures, schemas, provider gate
+│   ├── tests/                 # No-load, fallback, and integration-contract checks
+│   └── requirements.txt       # Lightweight API dependencies; no ML runtime
 ├── notebooks/
 │   ├── Data_Cleaning.ipynb
 │   └── Modelling.ipynb
@@ -50,6 +70,7 @@ Face-Spoofing-Detection/
 └── docs/
     ├── methodology.md         # Research, environment, data, and notebook guide
     ├── development.md         # Frontend setup and verification
+    ├── api.md                 # API / fallback / future predictor contract
     ├── assets/                # Placement guide, manifest, and exact prompts
     └── images/                # Screenshots of the running website
 ```
@@ -78,7 +99,9 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Browser checks use the standalone frontend; they do not load any research model. The production build is emitted to `frontend/dist/` and can be served by a static web host.
+Install `backend/requirements-dev.txt` into the root `.venv` before browser checks. Playwright starts the frontend and API on isolated ports 4174 and 8311 with model loading disabled. Backend checks run with `.venv/Scripts/python.exe -m pytest backend/tests -q` on Windows (or `.venv/bin/python` on macOS/Linux).
+
+The production build is emitted to `frontend/dist/`. A static host must provide an `/api` reverse proxy to enable the simulation; the landing page and gallery remain usable independently.
 
 ## Visual assets
 
